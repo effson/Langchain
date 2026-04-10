@@ -47,8 +47,5 @@ template3 = PromptTemplate(
     partial_variables={"foo": "hello"},  # 预先定义部分变量foo值为hello
 )
 
-prompt = template3.format(foo="li4",bar="world")
-print(prompt)  # li4 world
-
-prompt = template3.format(bar="world")
-print(prompt)  # hello world
+prompt = template3.format(foo="li4",bar="world") # li4 world
+prompt = template3.format(bar="world") # hello world

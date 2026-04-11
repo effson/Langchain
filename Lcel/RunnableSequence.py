@@ -50,4 +50,4 @@ result_chain = chain.invoke({"role": "AI助手", "question": "什么是LangChain
 logger.info(f"Chain执行结果:\n {result_chain}")
 logger.info(f"Chain执行结果类型: {type(result_chain)}")
 
-print(type(chain))
+print(type(chain))   # <class 'langchain_core.runnables.base.RunnableSequence'>

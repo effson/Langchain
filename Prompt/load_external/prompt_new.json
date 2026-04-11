@@ -1,0 +1,9 @@
+{
+  "lc": 1,
+  "type": "constructor",
+  "id": ["langchain", "prompts", "prompt", "PromptTemplate"],
+  "kwargs": {
+    "template": "请{name}讲一个{what}的故事",
+    "input_variables": ["name", "what"]
+  }
+}

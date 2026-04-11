@@ -42,20 +42,13 @@ parser2 = StrOutputParser()
 chain2 = prompt2 | model | parser2
 debug_node = RunnableLambda(debug_print)
 
-full_chain = chain1 | debug_print | chain2
-
-# 调用复合链
-result1 = full_chain.invoke({"topic": "langchain"})
-logger.info(f"最终结果111:{result1}")
-
+# full_chain = chain1 | debug_print | chain2
 full_chain = chain1 | debug_node | chain2
 
 result2 = full_chain.invoke({"topic": "langchain"})
-logger.info(f"最终结果222:{result2}")
+logger.info(f"最终结果:{result2}")
 
 """
-2026-04-11 17:35:33.822 | INFO     | __main__:debug_print:23 - 中间结果:LangChain是一个用于开发由大型语言模型驱动的应用程序的框架。它通过提供模块化组件和链式调用，简化了构建复杂应用（如问答系统、聊天机器人等）的过程，并支持与外部数据源和工具集成。
-2026-04-11 17:35:36.660 | INFO     | __main__:<module>:49 - 最终结果111:LangChain is a framework designed for developing applications powered by large language models. It simplifies the process of building complex applications, such as question-answering systems and chatbots, by offering modular components and chain-based calls. Additionally, it supports integration with external data sources and tools.
-2026-04-11 17:35:39.517 | INFO     | __main__:debug_print:23 - 中间结果:LangChain是一个用于开发由大型语言模型驱动的应用程序的框架。它通过提供模块化组件和链式调用，简化了构建复杂应用（如问答系统、聊天机器人等）的过程，并支持与外部数据源和工具集成。
-2026-04-11 17:35:42.233 | INFO     | __main__:<module>:54 - 最终结果222:LangChain is a framework designed for developing applications powered by large language models. It simplifies the process of building complex applications, such as question-answering systems and chatbots, by offering modular components and chain-based calls. Additionally, it supports integration with external data sources and tools.
+2026-04-11 18:16:29.715 | INFO     | __main__:debug_print:23 - 中间结果:LangChain是一个用于开发由大型语言模型驱动的应用程序的框架。它通过提供模块化组件和链式调用，简化了构建复杂应用（如问答系统、聊天机器人等）的过程，并支持与外部数据源和工具集成。
+2026-04-11 18:16:32.606 | INFO     | __main__:<module>:49 - 最终结果:LangChain is a framework designed for developing applications powered by large language models. It simplifies the process of building complex applications, such as question-answering systems and chatbots, by offering modular components and chain-based calls. Additionally, it supports integration with external data sources and tools.
 """

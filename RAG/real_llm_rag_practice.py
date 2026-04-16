@@ -38,5 +38,5 @@ embeddingsModel = DashScopeEmbeddings(
     dashscope_api_key=os.getenv("aliQwen-api")
 )
 
-loader = Docx2txtLoader("alibaba-java.docx")  
+loader = Docx2txtLoader("java.docx")  
 documents = loader.load()

@@ -46,7 +46,7 @@ text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0, length_f
 texts = text_splitter.split_documents(documents)
 
 vector_store = Redis.from_documents(
-    documents=documents,
+    documents=texts,
     embedding=embeddings,
     redis_url="redis://localhost:16988",  # 替换为你的 Redis 地址
     index_name="java_index",  # 向量索引名称

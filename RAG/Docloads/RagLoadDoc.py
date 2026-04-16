@@ -3,9 +3,10 @@ Each document loader may define its own parameters, but they share a common API:
 - load() – Loads all documents at once.
 - lazy_load() – Streams documents lazily, useful for large datasets.
 """
-# pip install langchain_community pypdf
+# pip install langchain_community pypdf unstructured[md]
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import UnstructuredMarkdownLoader
 
 # TextLoader
 file_path = "assets/sample.txt"  # 文件路径
@@ -38,3 +39,10 @@ print(pdfdocs)
 ]
 """
 
+mddocs = UnstructuredMarkdownLoader(
+    # 文件路径
+    file_path="assets/sample.md",
+    # 加载模式: single 返回单个Document对象，  elements 按标题等元素切分文档
+    mode="elements",
+).load()
+print(mddocs)

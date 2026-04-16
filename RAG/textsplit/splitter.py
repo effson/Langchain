@@ -23,8 +23,14 @@ RecursiveCharacterTextSplitter中指定：
 - chunk_overlap=30, 片段重叠字符数为30，
 - length_function=len，计算长度的函数使用len，# 可选：默认为字符串长度，可自定义函数来实现按 token 数切分
 """
-# 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=30, length_function=len)
+
+chunk_size = 100
+chunk_overlap = 30
+text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size, 
+        chunk_overlap=chunk_overlap, 
+        length_function=len
+)
 content = (
     "大模型RAG（检索增强生成）是一种结合生成模型与外部知识检索的技术，通过从大规模文档或数据库中检索相关信息，"
     "辅助生成模型以提升回答的准确性和相关性。其核心流程包括用户输入查询、系统检索相关知识、"
@@ -44,5 +50,21 @@ for splitter_document in splitter_documents:
 文档片段大小：100,文档内容：相关性。其核心流程包括用户输入查询、系统检索相关知识、生成模型基于检索结果生成内容，并输出最终答案。RAG的优势在于能够弥补生成模型的知识盲区，提供更准确、实时和可解释的输出，广泛应用于问答系统、内容
 文档片段大小：85,文档内容：区，提供更准确、实时和可解释的输出，广泛应用于问答系统、内容生成、客服、教育和企业领域。然而，其也面临依赖高质量知识库、可能的响应延迟、较高的维护成本以及数据隐私等挑战。
 """
+
+splitter_texts_forcheck = text_splitter.split_text(content)
+splitter_documents = [Document(page_content=text) for text in splitter_texts_forcheck]
+full_content = ""
+for text in splitter_texts:
+    if full_content:
+        full_content += text[30:]  # 剔除重叠的30个字符后拼接
+    else:
+        full_content += text
+
+print(f"拼接后文本大小：{len(full_content)}")
+print(f"是否与原始文本完全一致：{full_content == content}")
+print(f"拼接后完整内容：\n{full_content}")
+
+
+
 
 # RecursiveCharacterTextSplitter不仅可以分割纯文本，还可以直接分割Document对象

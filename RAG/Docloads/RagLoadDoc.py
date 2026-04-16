@@ -69,15 +69,31 @@ print(mddocs)
 
 
 # JSONLoader
-docs = JSONLoader(
+jsondocs = JSONLoader(
     file_path="assets/sample.json",  # 文件路径
     jq_schema=".",  # 提取所有字段
     text_content=False,  # 提取内容是否为字符串格式
 ).load()
-print(docs)
+print(jsondocs)
 """
 [
     Document(metadata={'source': 'C:\\Users\\Mechrev\\Desktop\\Langchain\\rag\\docloads\\assets\\sample.json', 'seq_num': 1}, 
              page_content='{"status": "success", "data": {"page": 2, "per_page": 3, "total_pa...')
+]
+"""
+
+
+
+# UnstructuredWordDocumentLoader
+worddocs = UnstructuredWordDocumentLoader(
+    file_path="assets/alibaba-more.docx",
+    # 加载模式: single 返回单个Document对象, elements 按标题等元素切分文档
+    mode="single",
+).load()
+print(worddocs)
+"""
+[
+    Document(metadata={'source': 'assets/alibaba-more.docx'}, 
+             page_content='Java开发手册（黄山版）\n\nJava开发手册（黄山版）\n\n前言 \n\n《Java 开发手册》是阿里巴...')
 ]
 """

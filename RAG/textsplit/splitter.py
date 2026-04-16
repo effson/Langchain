@@ -14,6 +14,7 @@ LangChain提供多种文本分割器（Text Splitters）：将长文本拆分为
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_unstructured import UnstructuredLoader
+from langchain_core.documents import Document
 
 """
 split_text()方法进行文本分割

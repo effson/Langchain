@@ -65,7 +65,37 @@ rag_chain = (
 )
 
 # 9. 提问
+# 如果没有rag，大模型是不知道答案的，或者胡乱回答
 question = "00000和A0001分别是什么意思"
 result = rag_chain.invoke(question)
 print("\n问题:", question)
 print("\n回答:", result.content)
+
+"""
+文档个数:1
+
+问题: 00000和A0001分别是什么意思
+
+回答: 根据提供的文本内容：
+- **00000** 的中文描述是“一切 ok”，说明是“正确执行后的返回”。
+- **A0001** 的中文描述是“用户端错误”，说明是“一级宏观错误码”。
+
+
+127.0.0.1:6379> keys *
+1) "for_rag:01KPB9JFCD0Y1AER7RMHPY1P50"
+2) "doc:java_index:52490f55b9c84c2cbf3df126ba5706fa"
+3) "for_rag:01KPB9JFCD0Y1AER7RMHPY1P4Z"
+4) "doc:ebindex:3a10b291d48b49ffadae05748fc36b70"
+5) "message_store:user-001"
+6) "doc:ebindex:8bb54c2953eb4229a6771aa9700cfe02"
+7) "for_rag:01KPB9JFCD0Y1AER7RMHPY1P51"
+8) "doc:ebindex:8afd559d25304255a505f2f292988519"
+127.0.0.1:6379> hgetall "doc:java_index:52490f55b9c84c2cbf3df126ba5706fa"
+1) "content_vector"
+2) "\xb6\xcc\xb8\xbd#\xf3\xb0\xbc\xad\x9c\xc2\xbd\xaf\x12\x99\xbc\xf1#\xfe\xbc\x88\xff\xd9\xbc\x83F$=@\x9b\...
+3) "source"
+4) "java.docx"
+5) "content"
+6) "Java\xe5\xbc\x80\xe5\x8f\x91\xe6\x89\x8b\xe5\x86\x8c\xef\xbc\x88\xe9\xbb\x84\xe5\xb1\xb1\xe7\x89\x88\xef\xbc\x89 \n\n \n\nJava\xe5\xbc\x80\...
+127.0.0.1:6379>
+"""

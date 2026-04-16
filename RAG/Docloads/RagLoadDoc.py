@@ -8,6 +8,7 @@ from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain_community.document_loaders import JSONLoader
+from langchain_community.document_loaders.csv_loader import CSVLoader
 
 # TextLoader
 file_path = "assets/sample.txt"  # 文件路径
@@ -95,5 +96,43 @@ print(worddocs)
 [
     Document(metadata={'source': 'assets/alibaba-more.docx'}, 
              page_content='Java开发手册（黄山版）\n\nJava开发手册（黄山版）\n\n前言 \n\n《Java 开发手册》是阿里巴...')
+]
+"""
+
+
+# CSVLoader
+csvdocs1 = CSVLoader(
+    file_path="assets/sample.csv",  # 文件路径
+).load()  # 返回List[Document]
+print(csvdocs1)
+"""
+[
+    Document(metadata={'source': 'assets/sample.csv', 'row': 0}, 
+             page_content='id: 1\ntitle: Introduction to Python\ncontent: Python is a popular programming language.\nauthor: John Doe'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 1}, 
+             page_content='id: 2\ntitle: Data Science Basics\ncontent: Data science involves statistics and machine learning.\nauthor: Jane Smith'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 2}, 
+             page_content='id: 3\ntitle: Web Development\ncontent: HTML, CSS and JavaScript are core web technologies.\nauthor: Mike Johnson'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 3}, 
+             page_content='id: 4\ntitle: Artificial Intelligence\ncontent: AI is transforming many industries.\nauthor: Sarah Williams')
+]
+"""
+
+csvdocs2 = CSVLoader(
+    file_path="assets/sample.csv",  # 文件路径
+    metadata_columns=["title", "author"],  # 将指定列作为元数据
+    content_columns=["content"],  # 将指定列作为内容
+).load()  # 返回List[Document]
+print(csvdocs2)
+"""
+[    
+    Document(metadata={'source': 'assets/sample.csv', 'row': 0, 'title': 'Introduction to Python', 'author': 'John Doe'}, 
+             page_content='content: Python is a popular programming language.'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 1, 'title': 'Data Science Basics', 'author': 'Jane Smith'}, 
+             page_content='content: Data science involves statistics and machine learning.'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 2, 'title': 'Web Development', 'author': 'Mike Johnson'}, 
+             page_content='content: HTML, CSS and JavaScript are core web technologies.'), 
+    Document(metadata={'source': 'assets/sample.csv', 'row': 3, 'title': 'Artificial Intelligence', 'author': 'Sarah Williams'}, 
+             page_content='content: AI is transforming many industries.')
 ]
 """

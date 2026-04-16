@@ -64,6 +64,7 @@ vector_store = PGVector.from_documents(
     embedding=embeddingsModel,
     connection=CONNECTION_STRING,
     collection_name=COLLECTION_NAME,
+    collection_metadata="java_errcode 参考",
     use_jsonb=True, # 建议开启，这样 metadata 会以 jsonb 格式存储，查询更快
 )
 
@@ -126,5 +127,9 @@ langchain=# SELECT count(*) FROM langchain_pg_embedding;
      1
 (1 row)
 
-langchain=#
+langchain=# SELECT * FROM langchain_pg_collection;
+                 uuid                 |    name    |          cmetadata          
+--------------------------------------+------------+-----------------------------
+ 86e215ba-fdce-4724-b3f0-48ea21b3cfa5 | java_index | "java_errcode \u53c2\u8003"
+(1 row)
 """

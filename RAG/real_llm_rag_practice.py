@@ -40,3 +40,32 @@ embeddingsModel = DashScopeEmbeddings(
 
 loader = Docx2txtLoader("java.docx")  
 documents = loader.load()
+
+# 5. 分割文档
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0, length_function=len)
+texts = text_splitter.split_documents(documents)
+
+vector_store = Redis.from_documents(
+    documents=documents,
+    embedding=embeddings,
+    redis_url="redis://localhost:16988",  # 替换为你的 Redis 地址
+    index_name="java_index",  # 向量索引名称
+)
+
+retriever = vector_store.as_retriever(search_kwargs={"k": 2})
+
+# 8. 创建Runnable链
+rag_chain = (
+        {
+            "context": retriever,
+            "question": RunnablePassthrough()
+        }
+        | prompt
+        | llm
+)
+
+# 9. 提问
+question = "00000和A0001分别是什么意思"
+result = rag_chain.invoke(question)
+print("\n问题:", question)
+print("\n回答:", result.content)

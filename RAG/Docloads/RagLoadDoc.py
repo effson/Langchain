@@ -7,6 +7,7 @@ Each document loader may define its own parameters, but they share a common API:
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
+from langchain_community.document_loaders import JSONLoader
 
 # TextLoader
 file_path = "assets/sample.txt"  # 文件路径
@@ -62,5 +63,21 @@ print(mddocs)
              page_content='批处理限制：标准实现不支持高吞吐批处理。'), 
     Document(metadata={'source': 'assets/sample.md', 'category_depth': 1, 'emphasized_text_contents': ['不适合短序列'], 'emphasized_text_tags': ['b'], 'languages': ['zho'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'parent_id': 'd72ff07d51983a0a0ea519205c1e657f', 'category': 'ListItem', 'element_id': '329bfa4b74a6503d7c42d33f55a6d16c'}, 
              page_content='不适合短序列：在极短生成中收益有限。')
+]
+"""
+
+
+
+# JSONLoader
+docs = JSONLoader(
+    file_path="assets/sample.json",  # 文件路径
+    jq_schema=".",  # 提取所有字段
+    text_content=False,  # 提取内容是否为字符串格式
+).load()
+print(docs)
+"""
+[
+    Document(metadata={'source': 'C:\\Users\\Mechrev\\Desktop\\Langchain\\rag\\docloads\\assets\\sample.json', 'seq_num': 1}, 
+             page_content='{"status": "success", "data": {"page": 2, "per_page": 3, "total_pa...')
 ]
 """

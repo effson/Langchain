@@ -74,4 +74,13 @@ print(f"拼接后完整内容：\n{full_content}")
 问答系统、内容生成、客服、教育和企业领域。然而，其也面临依赖高质量知识库、可能的响应延迟、较高的维护成本以及数据隐私等挑战。
 """
 
+
+print("==========================================================================================")
+
 # RecursiveCharacterTextSplitter不仅可以分割纯文本，还可以直接分割Document对象
+
+loader = UnstructuredLoader("rag.txt")
+documents = loader.load()
+
+doc_text_splitter = RecursiveCharacterTextSplitter(chunk_size=100, chunk_overlap=30, length_function=len)
+splitter_documents = doc_text_splitter.split_documents(documents)

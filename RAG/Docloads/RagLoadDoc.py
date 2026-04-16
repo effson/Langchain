@@ -39,9 +39,28 @@ print(pdfdocs)
 ]
 """
 
+
+
+# UnstructuredMarkdownLoader
 mddocs = UnstructuredMarkdownLoader(
     file_path="assets/sample.md",
     # 加载模式: single 返回单个Document对象，  elements 按标题等元素切分文档
     mode="elements",
 ).load()
 print(mddocs)
+"""
+[
+    Document(metadata={'source': 'assets/sample.md', 'category_depth': 0, 'languages': ['ron'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'category': 'Title', 'element_id': 'e6a3b421f39f298fffbc3cf1b3b95817'}, 
+             page_content='投机解码（Speculative Decoding）介绍'), 
+    Document(metadata={'source': 'assets/sample.md', 'category_depth': 1, 'languages': ['kor'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'parent_id': 'e6a3b421f39f298fffbc3cf1b3b95817', 'category': 'Title', 'element_id': '3a77bcc407e48690734a4701557ffdb6'}, 
+             page_content='引言'), 
+    Document(metadata={'source': 'assets/sample.md', 'languages': ['nor', 'vie', 'zho'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'parent_id': '3a77bcc407e48690734a4701557ffdb6', 'category': 'UncategorizedText', 'element_id': '5a9685df7e44c7f338356ef37bc09149'}, 
+             page_content='投机解码（Speculative Decoding）是一种先进的推理优化技术，用于加速大型语言模型（Large Language Mode...'), 
+    ...
+    
+    Document(metadata={'source': 'assets/sample.md', 'category_depth': 1, 'emphasized_text_contents': ['批处理限制'], 'emphasized_text_tags': ['b'], 'languages': ['zho', 'kor'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'parent_id': 'd72ff07d51983a0a0ea519205c1e657f', 'category': 'ListItem', 'element_id': '3b15777bd1bb8982f45716a676152789'}, 
+             page_content='批处理限制：标准实现不支持高吞吐批处理。'), 
+    Document(metadata={'source': 'assets/sample.md', 'category_depth': 1, 'emphasized_text_contents': ['不适合短序列'], 'emphasized_text_tags': ['b'], 'languages': ['zho'], 'file_directory': 'assets', 'filename': 'sample.md', 'filetype': 'text/markdown', 'last_modified': '2026-04-16T15:18:25', 'parent_id': 'd72ff07d51983a0a0ea519205c1e657f', 'category': 'ListItem', 'element_id': '329bfa4b74a6503d7c42d33f55a6d16c'}, 
+             page_content='不适合短序列：在极短生成中收益有限。')
+]
+"""

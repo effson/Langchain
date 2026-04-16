@@ -3,7 +3,7 @@ Each document loader may define its own parameters, but they share a common API:
 - load() – Loads all documents at once.
 - lazy_load() – Streams documents lazily, useful for large datasets.
 """
-# pip install langchain_community pypdf unstructured[md]
+# pip install langchain_community pypdf unstructured markdown
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import UnstructuredMarkdownLoader

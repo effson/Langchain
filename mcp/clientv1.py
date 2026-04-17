@@ -1,11 +1,10 @@
 """
-"fetch": {
-      "command": "uvx",
-      "args": [
-        "custom-value"
-      ],
-      "transport": "stdio"
-    }
+powershell -ExecutionPolicy ByPass -c "Invoke-RestMethod https://astral.sh/uv/install.ps1 | Invoke-Expression"
+PS C:\Users\Mechrev> uv --version
+uv 0.11.7 (9d177269e 2026-04-15 x86_64-pc-windows-msvc)
+PS C:\Users\Mechrev> where.exe uvx
+C:\Users\Mechrev\.local\bin\uvx.exe
+PS C:\Users\Mechrev>
 """
 # https://docs.langchain.com/oss/python/langchain/mcp
 import asyncio

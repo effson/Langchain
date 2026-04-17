@@ -17,7 +17,6 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.chat_models import init_chat_model
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from loguru import logger
-from sqlalchemy import exc
 
 from McpServer import mcp
 from dotenv import load_dotenv
@@ -77,7 +76,7 @@ async def run_chat_loop() -> None:
         try:
             result = await agent_executor.ainvoke({"input": user_input})
             print(f"\nAI: {result['output']}")
-        except:
+        except Exception as exc:
             logger.info(f"\n Error: {exc}")
 
     logger.info("会话结束，Bye！")

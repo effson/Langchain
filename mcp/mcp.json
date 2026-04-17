@@ -5,9 +5,9 @@
       "transport": "sse"
     },
     "fetch": {
-      "command": "uvx",
+      "command": "C:\\Users\\Mechrev\\.local\\bin\\uvx.exe",
       "args": [
-        "custom-value"
+        "mcp-server-fetch"
       ],
       "transport": "stdio"
     }

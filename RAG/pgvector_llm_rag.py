@@ -139,4 +139,18 @@ docker run --name pgadmin-container `
   -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" `
   -e "PGADMIN_DEFAULT_PASSWORD=admin" `
   -d dpage/pgadmin4
+
+打开浏览器，访问 http://localhost:5050。
+登录后，点击 Add New Server。
+General 选项卡：Name 随便填（如 PGVector_Local）。
+Connection 选项卡：
+Host name/address：host.docker.internal
+Port：6024
+Maintenance database：langchain。
+Username：langchain。
+Password：langchain
+
+在左侧树状菜单找到：
+Servers > PGVector_Local > Databases > langchain > Schemas > public > Tables > langchain_pg_embedding。
+右键点击表名 -> View/Edit Data -> All Rows
 """

@@ -3,7 +3,13 @@
     "weather": {
       "url": "http://127.0.0.1:8000/sse",
       "transport": "sse"
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "custom-value"
+      ],
+      "transport": "stdio"
     }
-
   }
 }

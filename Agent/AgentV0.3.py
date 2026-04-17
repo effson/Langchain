@@ -68,9 +68,7 @@ tools = [get_weather]
 agent = create_tool_calling_agent(llm, tools, prompt)
 
 # 创建agent执行器，负责协调agent和工具的执行流程
-# agent参数指定要执行的agent实例
-# tools参数提供agent可调用的工具列表
-# verbose参数设置为True，启用详细输出模式便于调试
+# agent:指定要执行的agent实例 tools:提供agent可调用的工具列表 verbose:设置为True，启用详细输出模式便于调试
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # 执行agent，处理用户关于北京和上海天气的查询请求

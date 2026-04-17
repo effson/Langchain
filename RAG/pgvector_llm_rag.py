@@ -132,4 +132,11 @@ langchain=# SELECT * FROM langchain_pg_collection;
 --------------------------------------+------------+-----------------------------
  86e215ba-fdce-4724-b3f0-48ea21b3cfa5 | java_index | "java_errcode \u53c2\u8003"
 (1 row)
+
+
+docker run --name pgadmin-container `
+  -p 5050:80 `
+  -e "PGADMIN_DEFAULT_EMAIL=admin@admin.com" `
+  -e "PGADMIN_DEFAULT_PASSWORD=admin" `
+  -d dpage/pgadmin4
 """

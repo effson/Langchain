@@ -85,3 +85,99 @@ async def run_chat_loop() -> None:
 
 if __name__ == "__main__":
     asyncio.run(run_chat_loop())
+
+"""
+[04/17/26 13:01:35] INFO     HTTP Request: GET                  _client.py:1740
+                             http://127.0.0.1:8000/sse                         
+                             "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=39cd9d663589435283e00289b                
+                             23cae64 "HTTP/1.1 202 Accepted"                   
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=39cd9d663589435283e00289b                
+                             23cae64 "HTTP/1.1 202 Accepted"                   
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=39cd9d663589435283e00289b                
+                             23cae64 "HTTP/1.1 202 Accepted"                   
+2026-04-17 13:01:35.321 | INFO     | __main__:run_chat_loop:95 - 已加载1个MCP工具: ['get_weather']
+
+ 你:2026-04-17 13:01:37.866 | INFO     | __main__:run_chat_loop:118 - 
+ MCP Agent 已启动，请先输入提问给LLM+MCP,输入Quit退出
+你好
+
+
+> Entering new AgentExecutor chain...
+[04/17/26 13:02:37] INFO     HTTP Request: POST                 _client.py:1740
+                             https://api.deepseek.com/v1/chat/c                
+                             ompletions "HTTP/1.1 200 OK"                      
+你好！我可以帮您查询天气信息。如果您想知道某个城市的天气情况，请告诉我城市名称（英文名，比如 Beijing、Shanghai、New York 等），我就可以为您查询即时天气信息。
+
+> Finished chain.
+
+AI: 你好！我可以帮您查询天气信息。如果您想知道某个城市的天气情况，请告诉我城市名称（英文名，比如 Beijing、Shanghai、New York 等），我就可以为您查询即时天气信息。
+
+ 你:Shanghai的天气怎么样
+
+
+> Entering new AgentExecutor chain...
+[04/17/26 13:03:17] INFO     HTTP Request: POST                 _client.py:1740
+                             https://api.deepseek.com/v1/chat/c                
+                             ompletions "HTTP/1.1 200 OK"                      
+
+Invoking: `get_weather` with `{'city': 'Shanghai'}`
+responded: 我来帮您查询上海的天气情况。
+
+[04/17/26 13:03:20] INFO     HTTP Request: GET                  _client.py:1740
+                             http://127.0.0.1:8000/sse                         
+                             "HTTP/1.1 200 OK"                                 
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=c3d7265982f3424f9f3e5f931                
+                             277510e "HTTP/1.1 202 Accepted"                   
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=c3d7265982f3424f9f3e5f931                
+                             277510e "HTTP/1.1 202 Accepted"                   
+                    INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=c3d7265982f3424f9f3e5f931                
+                             277510e "HTTP/1.1 202 Accepted"                   
+[04/17/26 13:03:22] INFO     HTTP Request: POST                 _client.py:1740
+                             http://127.0.0.1:8000/messages/?se                
+                             ssion_id=c3d7265982f3424f9f3e5f931                
+                             277510e "HTTP/1.1 202 Accepted"                   
+[{'type': 'text', 'text': '{"coord": {"lon": 121.4581, "lat": 31.2222}, "weather": [{"id": 803, "main": "Clouds", "description": "多云", "icon": "04d"}], "base": "stations", "main": {"temp": 19.92, "feels_like": 19.74, "temp_min": 19.92, "temp_max": 19.92, "pressure": 1014, "humidity": 68, "sea_level": 1014, "grnd_level": 1013}, "visibility": 8000, "wind": {"speed": 3, "deg": 10}, "clouds": {"all": 75}, "dt": 1776402078, "sys": {"type": 1, "id": 9659, "country": "CN", "sunrise": 1776374657, "sunset": 1776421379}, "timezone": 28800, "id": 1796236, "name": "Shanghai", "cod": 200}', 'id': 'lc_153678e5-6591-4c38-b3ad-7fa1240b4e4c'}]                    INFO     HTTP Request: POST                 _client.py:1740
+                             https://api.deepseek.com/v1/chat/c                
+                             ompletions "HTTP/1.1 200 OK"                      
+根据查询结果，上海当前的天气情况如下：
+
+**天气状况：** 多云
+**温度：** 19.92°C（体感温度19.74°C）
+**湿度：** 68%
+**气压：** 1014 hPa
+**风速：** 3 m/s，风向10度
+**能见度：** 8000米
+**云量：** 75%
+
+总体来说，上海现在是多云天气，温度约20°C，比较舒适，湿度适中，风力较小。
+
+> Finished chain.
+
+AI: 根据查询结果，上海当前的天气情况如下：
+
+**天气状况：** 多云
+**温度：** 19.92°C（体感温度19.74°C）
+**湿度：** 68%
+**气压：** 1014 hPa
+**风速：** 3 m/s，风向10度
+**能见度：** 8000米
+**云量：** 75%
+
+总体来说，上海现在是多云天气，温度约20°C，比较舒适，湿度适中，风力较小。
+
+你:quit
+2026-04-17 13:08:29.452 | INFO     | __main__:run_chat_loop:130 - 会话结束，Bye！
+"""

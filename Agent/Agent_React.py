@@ -3,7 +3,9 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain.agents import create_agent
 from langchain.tools import tool
+from dotenv import load_dotenv
 
+load_dotenv()
 # 模拟产品数据库
 PRODUCT_DATABASE = {
     "无线耳机": [
@@ -139,3 +141,45 @@ def track_react_cycle(messages):
 
 # 追踪案例1的ReAct循环
 track_react_cycle(result1['messages'])
+
+"""
+🔍 [工具调用] search_products('无线耳机')
+📦 [工具调用] check_inventory('WH-1000XM5')
+
+========================================
+📊 最终结果:
+HumanMessage: 查找当前最受欢迎的无线耳机并检查是否有库存
+AIMessage: 1. 首先，我需要搜索当前最受欢迎的无线耳机。
+2. 然后，从搜索结果中获取最受欢迎的产品ID，并检查其库存状态。
+
+
+ToolMessage: 找到 5 个匹配 '无线耳机' 的产品:
+1. 索尼 WH-1000XM5 (ID: WH-1000XM5) - 受欢迎度: 95% - ￥299
+2. 苹果 AirPods Max (ID: AIRMAX) - 受欢迎度: 92% - ￥549
+3. Bose QuietComfort 45 (ID: QC45) - 受欢迎度: 88% - ￥329
+4. JBL Tune 760NC (ID: HT450) - 受欢迎度: 82% - ￥99
+5. 森海塞尔 PXC 550 (ID: PXC550) - 受欢迎度: 76% - ￥299
+
+AIMessage: 最受欢迎的无线耳机是索尼 WH-1000XM5（ID: WH-1000XM5），接下来我将检查它的库存状态。
+
+
+
+ToolMessage: 产品 WH-1000XM5: 有库存 (10 件库存) - 位置: 仓库-A
+AIMessage: 索尼 WH-1000XM5 是当前最受欢迎的无线耳机，且有库存（10件），存放于仓库-A。
+========================================
+
+
+ReAct循环步骤分析:
+
+🔄 步骤1: Reasoning + Acting
+   🛠️  工具调用: search_products({'query': '无线耳机'})
+   📋  观察结果: 找到 5 个匹配 '无线耳机' 的产品:
+1. 索尼 WH-1000XM5 (ID: WH-1000XM5) - 受欢迎度: 95% - ￥299
+2. 苹果 ...
+
+🔄 步骤2: Reasoning + Acting
+   🛠️  工具调用: check_inventory({'product_id': 'WH-1000XM5'})
+   📋  观察结果: 产品 WH-1000XM5: 有库存 (10 件库存) - 位置: 仓库-A...
+
+✅ 最终回答: 索尼 WH-1000XM5 是当前最受欢迎的无线耳机，且有库存（10件），存放于仓库-A。
+"""

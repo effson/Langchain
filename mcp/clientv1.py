@@ -100,7 +100,7 @@ if __name__ == "__main__":
                              http://127.0.0.1:8000/messages/?se                
                              ssion_id=39cd9d663589435283e00289b                
                              23cae64 "HTTP/1.1 202 Accepted"                   
-2026-04-17 13:01:35.321 | INFO     | __main__:run_chat_loop:95 - 已加载1个MCP工具: ['get_weather']
+2026-04-17 13:01:35.321 | INFO     | __main__:run_chat_loop:95 - 已加载2个MCP工具: ['get_weather', 'fetch']
 
  你:2026-04-17 13:01:37.866 | INFO     | __main__:run_chat_loop:118 - 
  MCP Agent 已启动，请先输入提问给LLM+MCP,输入Quit退出
@@ -175,6 +175,18 @@ AI: 根据查询结果，上海当前的天气情况如下：
 **云量：** 75%
 
 总体来说，上海现在是多云天气，温度约20°C，比较舒适，湿度适中，风力较小。
+你:2026-04-17 19:30:42.022 | INFO     | __main__:run_chat_loop:118 - 
+ MCP Agent 已启动，请先输入提问给LLM+MCP,输入Quit退出
+https://docs.langchain.org.cn/langsmith/deployments总接一下这篇文档
+
+
+> Entering new AgentExecutor chain...
+[04/17/26 19:32:27] INFO     HTTP Request: POST                 _client.py:1786
+                             https://api.deepseek.com/v1/chat/c                
+                             ompletions "HTTP/1.1 200 OK"                      
+
+Invoking: `fetch` with `{'url': 'https://docs.langchain.org.cn/langsmith/deployments'}`
+responded: 我来帮您获取并总结这篇文档的内容。
 
 你:quit
 2026-04-17 13:08:29.452 | INFO     | __main__:run_chat_loop:130 - 会话结束，Bye！
